@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://scripts/menu_scene.gd" type="Script" id=1]
+[ext_resource path="res://scripts/start_menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/gfx/overlay.png" type="Texture" id=3]
+[ext_resource path="res://assets/gfx/start_btn.png" type="Texture" id=4]
+[ext_resource path="res://assets/gfx/start_btn_hover.png" type="Texture" id=5]
+[ext_resource path="res://assets/gfx/ct_logo.png" type="Texture" id=6]
+[ext_resource path="res://assets/gfx/start_tip.png" type="Texture" id=7]
+[ext_resource path="res://assets/gfx/title.png" type="Texture" id=8]
+[ext_resource path="res://scripts/end_menu.gd" type="Script" id=9]
+[ext_resource path="res://assets/gfx/game_over.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/hachicro.fnt" type="Font" id=11]
+[ext_resource path="res://scenes/level_one.tscn" type="PackedScene" id=12]
+
+[node name="base" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="start_menu" type="CanvasLayer" parent="."]
+
+process/pause_mode = 2
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 2 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="overlay" type="Sprite" parent="start_menu"]
+
+transform/pos = Vector2( 533, 300 )
+texture = ExtResource( 3 )
+
+[node name="start_button" type="TextureButton" parent="start_menu"]
+
+margin/left = 496.0
+margin/top = 256.0
+margin/right = 560.0
+margin/bottom = 320.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+textures/normal = ExtResource( 4 )
+textures/pressed = ExtResource( 5 )
+textures/hover = ExtResource( 5 )
+
+[node name="ct_logo" type="Sprite" parent="start_menu"]
+
+transform/pos = Vector2( 529, 560 )
+texture = ExtResource( 6 )
+
+[node name="start_label" type="Sprite" parent="start_menu"]
+
+transform/pos = Vector2( 528, 348 )
+texture = ExtResource( 7 )
+
+[node name="title" type="Sprite" parent="start_menu"]
+
+transform/pos = Vector2( 532, 184 )
+texture = ExtResource( 8 )
+
+[node name="end_menu" type="CanvasLayer" parent="."]
+
+process/pause_mode = 2
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 9 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="overlay" type="Sprite" parent="end_menu"]
+
+visibility/visible = false
+transform/pos = Vector2( 533, 300 )
+texture = ExtResource( 3 )
+
+[node name="game_ove_label" type="Sprite" parent="end_menu"]
+
+visibility/visible = false
+transform/pos = Vector2( 536, 192 )
+texture = ExtResource( 10 )
+
+[node name="restart_button" type="TextureButton" parent="end_menu"]
+
+visibility/visible = false
+margin/left = 496.0
+margin/top = 256.0
+margin/right = 560.0
+margin/bottom = 320.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+textures/normal = ExtResource( 4 )
+textures/pressed = ExtResource( 5 )
+textures/hover = ExtResource( 5 )
+
+[node name="restart_label" type="Sprite" parent="end_menu"]
+
+visibility/visible = false
+transform/pos = Vector2( 528, 348 )
+texture = ExtResource( 7 )
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="score" type="Label" parent="hud"]
+
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 70.0
+margin/bottom = 71.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 11 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="level_one" parent="." instance=ExtResource( 12 )]
+
+[connection signal="pressed" from="start_menu/start_button" to="." method="_on_start_button_pressed"]
+
+[connection signal="pressed" from="end_menu/restart_button" to="." method="_on_restart_button_pressed"]
+
+
