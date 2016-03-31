@@ -1,5 +1,6 @@
 # Flappy Heapspacer: with jetpack!
 A simple Flappy Bird clone made in Godot for Heapspace's Geek Night meetup.
+![Alt text](/screenshot.png?raw=true "Gameplay screenshot")
 
 # MIT License
 This license applies both to the code, and to all graphical assets within this repository.
